@@ -61,7 +61,8 @@
     gap: 16px;
 }
 
-.ctas a {
+.ctas a,
+.ctas button {
     appearance: none;
     border-radius: 128px;
     height: 48px;
@@ -77,20 +78,33 @@
     font-weight: 500;
 }
 
-a.primary {
+a.primary,
+button.primary {
     background: var(--foreground);
     color: var(--background);
     gap: 8px;
 }
 
-a.secondary {
+a.secondary,
+button.secondary {
     border-color: var(--gray-alpha-200);
     min-width: 158px;
+    background-color: transparent;
+}
+
+a.email {
+    text-decoration: underline;
+}
+
+a.email:hover {
+    text-decoration: none;
+    opacity: 0.9;
 }
 
 .footer {
     grid-row-start: 3;
     display: flex;
+    justify-content: center;
     gap: 24px;
 }
 
@@ -106,12 +120,14 @@ a.secondary {
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-    a.primary:hover {
+    a.primary:hover,
+    button.primary:hover {
         background: var(--button-primary-hover);
         border-color: transparent;
     }
 
-    a.secondary:hover {
+    a.secondary:hover,
+    button.secondary:hover {
         background: var(--button-secondary-hover);
         border-color: transparent;
     }
@@ -140,13 +156,15 @@ a.secondary {
         flex-direction: column;
     }
 
-    .ctas a {
+    .ctas a,
+    .ctas button {
         font-size: 14px;
         height: 40px;
         padding: 0 16px;
     }
 
-    a.secondary {
+    a.secondary,
+    button.secondary {
         min-width: auto;
     }
 
@@ -158,7 +176,13 @@ a.secondary {
 }
 
 @media (prefers-color-scheme: dark) {
-    .logo {
+    .logo-invert-on-dark-theme {
+        filter: invert();
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .logo-invert-on-light-theme {
         filter: invert();
     }
 }
