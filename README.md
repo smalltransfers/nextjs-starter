@@ -18,13 +18,13 @@ Set the environment variables. For running locally, `cp .env.example .env.local`
 Run the development server:
 
 ```bash
-pnpm dev
+pnpm install && pnpm dev
 # or
-npm run dev
+npm install && npm run dev
 # or
-yarn dev
+yarn install && yarn dev
 # or
-bun dev
+bun install && bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
