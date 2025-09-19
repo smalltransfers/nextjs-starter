@@ -7,6 +7,10 @@ export async function getUser(): Promise<Result<Email | null>> {
     return call(`/api/users/me`, { method: "GET" });
 }
 
+export async function signOut(): Promise<Result<void>> {
+    return call(`/api/users/me`, { method: "DELETE" });
+}
+
 export async function makePaidRequest(): Promise<Result<Micros>> {
     return call(`/api/paid-requests`);
 }
