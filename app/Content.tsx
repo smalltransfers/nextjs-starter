@@ -9,12 +9,7 @@ import { Button } from "@/components/ui/button";
 import { getUser, makePaidRequest } from "@/lib/api";
 import { useCurrentUserEmail, useSetCurrentUserEmail } from "@/lib/store/hooks";
 
-interface Props {
-    readonly baseUrl: string;
-}
-
-export default function Content(props: Props): JSX.Element {
-    const { baseUrl } = props;
+export default function Content(): JSX.Element {
     const currentUserEmail = useCurrentUserEmail();
     const setCurrentUserEmail = useSetCurrentUserEmail();
     const [isMakingPaidRequest, setIsMakingPaidRequest] = useState(false);
@@ -65,7 +60,7 @@ export default function Content(props: Props): JSX.Element {
     }
 
     if (currentUserEmail === null) {
-        return <SignInButton baseUrl={baseUrl} />;
+        return <SignInButton />;
     }
 
     return (

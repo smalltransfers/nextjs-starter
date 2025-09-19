@@ -19,5 +19,6 @@ export type Opaque<BaseType, OpaqueType> = BaseType & {
     readonly __type?: OpaqueType;
 };
 
+export type Url = Opaque<string, "Url">;
 export type Email = Opaque<string, "Email">;
 export type Micros = Opaque<number, "Micros">;

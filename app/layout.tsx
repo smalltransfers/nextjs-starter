@@ -3,8 +3,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
+
+import BaseUrlProvider from "@/components/BaseUrlProvider";
+import { getBaseUrl } from "@/lib/basePath";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -21,11 +24,19 @@ export const metadata: Metadata = {
     description: "The NextJS Starter project for Small Transfers.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+interface Props {
+    readonly children: ReactNode;
+}
+
+export default async function RootLayout(props: Props): Promise<JSX.Element> {
+    const { children } = props;
+
+    const baseUrl = await getBaseUrl();
+
     return (
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                {children}
+                <BaseUrlProvider baseUrl={baseUrl}>{children}</BaseUrlProvider>
                 <ToastContainer position="bottom-left" />
             </body>
         </html>

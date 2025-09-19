@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { JSX } from "react";
 
+import Page from "@/components/Page";
+import { Button } from "@/components/ui/button";
+
 export const metadata: Metadata = {
     title: "Error | Small Transfers",
     description: "An error occurred.",
@@ -18,20 +21,16 @@ export default async function ErrorPage(props: Props): Promise<JSX.Element> {
     const { message } = await searchParams;
 
     return (
-        <div
-            style={{
-                minHeight: "100vh",
-                display: "flex",
-                flexDirection: "column",
-                gap: "24px",
-                alignItems: "center",
-                justifyContent: "center",
-            }}
-        >
-            <div>{message ?? "An error occurred."}</div>
-            <div>
-                <Link href="/">Home</Link>
+        <Page>
+            <div className="flex flex-col items-center gap-4">
+                <div className="text-2xl font-bold">Error</div>
+                <div className="text-sm">{message ?? "An unexpected error occurred."}</div>
+                <div>
+                    <Button asChild variant="outline" size="sm">
+                        <Link href="/">Home</Link>
+                    </Button>
+                </div>
             </div>
-        </div>
+        </Page>
     );
 }

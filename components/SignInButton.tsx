@@ -4,16 +4,13 @@ import Image from "next/image";
 import { JSX } from "react";
 import { toast } from "react-toastify";
 
+import { useBaseUrl } from "@/components/BaseUrlProvider";
 import { Button } from "@/components/ui/button";
 import { SMALL_TRANSFERS_BASE_URL } from "@/lib/constants";
 import smallTransfersIcon from "@/public/smalltransfers.svg";
 
-interface Props {
-    readonly baseUrl: string;
-}
-
-export default function SignInButton(props: Props): JSX.Element {
-    const { baseUrl } = props;
+export default function SignInButton(): JSX.Element {
+    const baseUrl = useBaseUrl();
 
     function signIn(): void {
         const publishableKey = process.env.NEXT_PUBLIC_SMALL_TRANSFERS_PUBLISHABLE_KEY;
