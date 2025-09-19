@@ -1,18 +1,21 @@
 "use client";
 
 import { Loader2Icon, LogOut } from "lucide-react";
-import { JSX, useState } from "react";
+import { JSX } from "react";
 import { toast } from "react-toastify";
 
 import { Button } from "@/components/ui/button";
 import { SMALL_TRANSFERS_BASE_URL } from "@/lib/constants";
-import { useCurrentUserEmail, useSetCurrentUserEmail } from "@/lib/store/hooks";
+import { useCurrentUserEmail, useIsSigningOut, useSetCurrentUserEmail, useSetIsSigningOut } from "@/lib/store/hooks";
+import { useIsHydrated } from "@/lib/useIsHydrated";
 import { getResponseErrorString } from "@/lib/utils";
 
 export default function Header(): JSX.Element | false {
+    const isHydrated = useIsHydrated();
     const currentUserEmail = useCurrentUserEmail();
     const setCurrentUserEmail = useSetCurrentUserEmail();
-    const [isSigningOut, setIsSigningOut] = useState(false);
+    const setIsSigningOut = useSetIsSigningOut();
+    const isSigningOut = useIsSigningOut();
 
     async function signOut(): Promise<void> {
         setIsSigningOut(true);
@@ -28,7 +31,7 @@ export default function Header(): JSX.Element | false {
         setIsSigningOut(false);
     }
 
-    const disabled = isSigningOut;
+    const disabled = !isHydrated || isSigningOut;
 
     if (currentUserEmail === undefined || currentUserEmail === null) {
         return false;

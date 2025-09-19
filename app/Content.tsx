@@ -7,11 +7,14 @@ import { toast } from "react-toastify";
 import SignInButton from "@/components/SignInButton";
 import { Button } from "@/components/ui/button";
 import { getUser, makePaidRequest } from "@/lib/api";
-import { useCurrentUserEmail, useSetCurrentUserEmail } from "@/lib/store/hooks";
+import { useCurrentUserEmail, useIsSigningOut, useSetCurrentUserEmail } from "@/lib/store/hooks";
+import { useIsHydrated } from "@/lib/useIsHydrated";
 
 export default function Content(): JSX.Element {
+    const isHydrated = useIsHydrated();
     const currentUserEmail = useCurrentUserEmail();
     const setCurrentUserEmail = useSetCurrentUserEmail();
+    const isSigningOut = useIsSigningOut();
     const [isMakingPaidRequest, setIsMakingPaidRequest] = useState(false);
 
     useEffect(() => {
@@ -50,11 +53,13 @@ export default function Content(): JSX.Element {
         setIsMakingPaidRequest(false);
     }
 
+    const disabled = !isHydrated || isMakingPaidRequest || isSigningOut;
+
     if (currentUserEmail === undefined) {
         return (
-            <div className="flex flex-col items-center gap-2">
-                <p className="text-2xl">Loading...</p>
+            <div className="flex items-center gap-2">
                 <Loader2Icon className="animate-spin" />
+                <p className="text-2xl">Loading...</p>
             </div>
         );
     }
@@ -65,7 +70,7 @@ export default function Content(): JSX.Element {
 
     return (
         <div className="flex w-full max-w-md flex-col items-center gap-6">
-            <Button onClick={handleMakePaidRequest} disabled={isMakingPaidRequest}>
+            <Button onClick={handleMakePaidRequest} disabled={disabled}>
                 {isMakingPaidRequest ? (
                     <>
                         <Loader2Icon className="animate-spin" />
