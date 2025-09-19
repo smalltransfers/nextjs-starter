@@ -1,0 +1,14 @@
+import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
+
+export interface Store {
+    currentUserEmail: undefined | null | string;
+    setCurrentUserEmail: (currentUserEmail: null | string) => void;
+}
+
+export const useStore = create<Store>()(
+    immer((set) => ({
+        currentUserEmail: undefined,
+        setCurrentUserEmail: (currentUserEmail) => set({ currentUserEmail }),
+    })),
+);

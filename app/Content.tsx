@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 import SignInButton from "@/components/SignInButton";
 import { Button } from "@/components/ui/button";
+import { useCurrentUserEmail, useSetCurrentUserEmail } from "@/lib/store/hooks";
 import { getResponseErrorString } from "@/lib/utils";
 
 interface Props {
@@ -14,7 +15,8 @@ interface Props {
 
 export default function Content(props: Props): JSX.Element {
     const { baseUrl } = props;
-    const [currentUserEmail, setCurrentUserEmail] = useState<undefined | null | string>(undefined);
+    const currentUserEmail = useCurrentUserEmail();
+    const setCurrentUserEmail = useSetCurrentUserEmail();
     const [isMakingPaidRequest, setIsMakingPaidRequest] = useState(false);
 
     useEffect(() => {
@@ -25,7 +27,7 @@ export default function Content(props: Props): JSX.Element {
         }
 
         getCurrentUser();
-    }, []);
+    }, [setCurrentUserEmail]);
 
     function getPublishableKeyInfo(): JSX.Element | null {
         if (process.env.NEXT_PUBLIC_SMALL_TRANSFERS_PUBLISHABLE_KEY === undefined) {

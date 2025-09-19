@@ -1,26 +1,18 @@
 "use client";
 
 import { Loader2Icon, LogOut } from "lucide-react";
-import { JSX, useEffect, useState } from "react";
+import { JSX, useState } from "react";
 import { toast } from "react-toastify";
 
 import { Button } from "@/components/ui/button";
 import { SMALL_TRANSFERS_BASE_URL } from "@/lib/constants";
+import { useCurrentUserEmail, useSetCurrentUserEmail } from "@/lib/store/hooks";
 import { getResponseErrorString } from "@/lib/utils";
 
 export default function Header(): JSX.Element | false {
-    const [currentUserEmail, setCurrentUserEmail] = useState<string | null | undefined>(undefined);
+    const currentUserEmail = useCurrentUserEmail();
+    const setCurrentUserEmail = useSetCurrentUserEmail();
     const [isSigningOut, setIsSigningOut] = useState(false);
-
-    // Get current user on mount
-    useEffect(() => {
-        async function getCurrentUser() {
-            const response = await fetch("/api/users/me");
-            const userEmail = await response.json();
-            setCurrentUserEmail(userEmail);
-        }
-        getCurrentUser();
-    }, []);
 
     async function signOut(): Promise<void> {
         setIsSigningOut(true);
