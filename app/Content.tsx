@@ -1,11 +1,12 @@
 "use client";
 
-import { toast } from "react-toastify";
-import styles from "@/app/page.module.css";
-import { JSX, useEffect, useState } from "react";
-import { getResponseErrorString } from "@/lib/utils";
 import Image from "next/image";
+import { JSX, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
+import styles from "@/app/page.module.css";
 import { SMALL_TRANSFERS_BASE_URL } from "@/lib/constants";
+import { getResponseErrorString } from "@/lib/utils";
 
 interface Props {
     readonly baseUrl: string;
@@ -88,7 +89,9 @@ export default function Content(props: Props): JSX.Element {
 
     if (currentUserEmail === undefined) {
         return <div>Loading...</div>;
-    } else if (currentUserEmail === null) {
+    }
+
+    if (currentUserEmail === null) {
         return (
             <div className={styles.ctas}>
                 <button onClick={signIn} className={styles.primary}>
@@ -103,39 +106,39 @@ export default function Content(props: Props): JSX.Element {
                 </button>
             </div>
         );
-    } else {
-        return (
-            <>
-                <div style={{ textAlign: "center" }}>
-                    Signed in as{" "}
-                    <a
-                        href={`${SMALL_TRANSFERS_BASE_URL}/customer/sign-in/${currentUserEmail}`}
-                        target="_blank"
-                        rel="noopener"
-                        className={styles.email}
-                    >
-                        {currentUserEmail}
-                    </a>
-                    .
-                </div>
-                <div className={styles.ctas}>
-                    <button onClick={makePaidRequest} disabled={disabled} className={styles.primary}>
-                        {isMakingPaidRequest ? "Making a paid request..." : "Make a paid request"}
-                    </button>
-                    <button onClick={signOut} disabled={disabled} className={styles.secondary}>
-                        {isSigningOut ? "Signing out..." : "Sign out"}
-                    </button>
-                </div>
-                <div
-                    style={{
-                        textAlign: "center",
-                        maxWidth: "330px",
-                        margin: "0 auto",
-                    }}
-                >
-                    {getPublishableKeyInfo()}
-                </div>
-            </>
-        );
     }
+
+    return (
+        <>
+            <div style={{ textAlign: "center" }}>
+                Signed in as{" "}
+                <a
+                    href={`${SMALL_TRANSFERS_BASE_URL}/customer/sign-in/${currentUserEmail}`}
+                    target="_blank"
+                    rel="noopener"
+                    className={styles.email}
+                >
+                    {currentUserEmail}
+                </a>
+                .
+            </div>
+            <div className={styles.ctas}>
+                <button onClick={makePaidRequest} disabled={disabled} className={styles.primary}>
+                    {isMakingPaidRequest ? "Making a paid request..." : "Make a paid request"}
+                </button>
+                <button onClick={signOut} disabled={disabled} className={styles.secondary}>
+                    {isSigningOut ? "Signing out..." : "Sign out"}
+                </button>
+            </div>
+            <div
+                style={{
+                    textAlign: "center",
+                    maxWidth: "330px",
+                    margin: "0 auto",
+                }}
+            >
+                {getPublishableKeyInfo()}
+            </div>
+        </>
+    );
 }

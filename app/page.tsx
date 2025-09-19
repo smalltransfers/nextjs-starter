@@ -1,8 +1,9 @@
-import styles from "@/app/page.module.css";
-import { getBaseUrl } from "@/lib/basePath";
+import { JSX } from "react";
+
 import Content from "@/app/Content";
 import Footer from "@/app/Footer";
-import { JSX } from "react";
+import styles from "@/app/page.module.css";
+import { getBaseUrl } from "@/lib/basePath";
 
 export default async function Home(): Promise<JSX.Element> {
     const baseUrl = await getBaseUrl();

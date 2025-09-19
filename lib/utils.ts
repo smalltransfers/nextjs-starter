@@ -18,7 +18,7 @@ export async function getResponseErrorString(response: Response): Promise<string
             return getErrorString(data.error);
         }
         return `${response.statusText} (${response.status})`;
-    } catch (error: unknown) {
+    } catch {
         return `${response.statusText} (${response.status})`;
     }
 }

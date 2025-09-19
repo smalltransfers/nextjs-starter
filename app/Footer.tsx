@@ -1,6 +1,7 @@
-import styles from "@/app/page.module.css";
 import Image from "next/image";
 import { JSX } from "react";
+
+import styles from "@/app/page.module.css";
 
 export default function Footer(): JSX.Element {
     return (

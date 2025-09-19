@@ -5,19 +5,32 @@
     "scripts": {
         "dev": "next dev --turbopack",
         "build": "next build --turbopack",
-        "start": "next start"
+        "start": "next start",
+        "lint": "eslint"
     },
     "dependencies": {
         "iron-session": "^8.0.4",
-        "next": "15.5.2",
+        "next": "15.5.3",
         "react": "19.1.0",
         "react-dom": "19.1.0",
         "react-toastify": "^11.0.5"
     },
     "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@next/eslint-plugin-next": "^15.5.3",
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
+        "@typescript-eslint/eslint-plugin": "^8",
+        "@typescript-eslint/parser": "^8",
+        "eslint": "^9",
+        "eslint-config-next": "15.5.3",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-simple-import-sort": "^12.1.1",
+        "eslint-plugin-unused-imports": "^4.2.0",
+        "prettier": "^3.6.2",
+        "prettier-plugin-tailwindcss": "^0.6.14",
         "typescript": "^5"
     }
 }

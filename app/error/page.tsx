@@ -1,6 +1,8 @@
 import { Metadata } from "next";
-import styles from "@/app/page.module.css";
+import Link from "next/link";
 import { JSX } from "react";
+
+import styles from "@/app/page.module.css";
 
 export const metadata: Metadata = {
     title: "Error | Small Transfers",
@@ -30,9 +32,9 @@ export default async function ErrorPage(props: Props): Promise<JSX.Element> {
         >
             <div>{message ?? "An error occurred."}</div>
             <div className={styles.ctas}>
-                <a className={styles.secondary} href="/">
+                <Link className={styles.secondary} href="/">
                     Home
-                </a>
+                </Link>
             </div>
         </div>
     );

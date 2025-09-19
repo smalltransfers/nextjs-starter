@@ -8,9 +8,9 @@ Create a merchant account at [Small Transfers](https://smalltransfers.com) to ob
 
 Set the environment variables. For running locally, `cp .env.example .env.local`, then edit `.env.local`.
 
--   `NEXT_PUBLIC_SMALL_TRANSFERS_PUBLISHABLE_KEY`: The publishable key for your Small Transfers account.
--   `SMALL_TRANSFERS_SECRET_KEY`: The secret key for your Small Transfers account.
--   `IRON_SESSION_PASSWORD`: The password to encrypt the session cookie. You can generate it with:
+- `NEXT_PUBLIC_SMALL_TRANSFERS_PUBLISHABLE_KEY`: The publishable key for your Small Transfers account.
+- `SMALL_TRANSFERS_SECRET_KEY`: The secret key for your Small Transfers account.
+- `IRON_SESSION_PASSWORD`: The password to encrypt the session cookie. You can generate it with:
     ```bash
     node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
     ```
@@ -33,8 +33,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 See the following [Small Transfers](https://smalltransfers.com) resources:
 
--   [Integration Guide](https://smalltransfers.com/merchant/docs/integration-guide)
--   [API Reference](https://smalltransfers.com/merchant/docs/api)
+- [Integration Guide](https://smalltransfers.com/merchant/docs/integration-guide)
+- [API Reference](https://smalltransfers.com/merchant/docs/api)
 
 ## Deploy on Vercel
 

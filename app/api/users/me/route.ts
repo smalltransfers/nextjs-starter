@@ -1,7 +1,8 @@
-import { IRON_SESSION_OPTIONS } from "@/lib/ironSession";
-import { getErrorString } from "@/lib/utils";
 import { getIronSession, SessionData } from "iron-session";
 import { cookies } from "next/headers";
+
+import { IRON_SESSION_OPTIONS } from "@/lib/ironSession";
+import { getErrorString } from "@/lib/utils";
 
 export async function GET(): Promise<Response> {
     let response: Response;
