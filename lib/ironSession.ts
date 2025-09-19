@@ -1,5 +1,6 @@
 import { SessionOptions } from "iron-session";
 
+import { AccessToken } from "@/lib/smalltransfersTypes";
 import { Email } from "@/lib/types";
 
 const IRON_SESSION_PASSWORD = process.env.IRON_SESSION_PASSWORD;
@@ -20,7 +21,7 @@ export const IRON_SESSION_OPTIONS: SessionOptions = {
 
 interface UserSessionData {
     readonly email: Email;
-    readonly accessToken: string;
+    readonly accessToken: AccessToken;
 }
 
 declare module "iron-session" {

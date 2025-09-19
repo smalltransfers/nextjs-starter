@@ -6,7 +6,7 @@ import Page from "@/components/Page";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-    title: "Error | Small Transfers",
+    title: "Error | NextJS Starter | Small Transfers",
     description: "An error occurred.",
 };
 

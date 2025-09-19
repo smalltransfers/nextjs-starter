@@ -3,35 +3,16 @@ import "@/lib/serverOnly";
 import StatusCode from "status-code-enum";
 
 import { SMALL_TRANSFERS_BASE_URL } from "@/lib/constants";
-import { ApiError, Micros, Opaque } from "@/lib/types";
-
-type AuthorizationCode = Opaque<string, "AuthorizationCode">;
-type AccessToken = Opaque<string, "AccessToken">;
-type ChargeId = Opaque<string, "ChargeId">;
-
-interface CustomerInfo {
-    readonly id: string;
-    readonly firstName: string;
-    readonly lastName: string;
-    readonly email: string;
-}
-
-interface GetTokensResponseBody {
-    readonly accessToken: AccessToken;
-    readonly tokenType: "bearer";
-    readonly scope: "add-charge";
-    readonly customer: CustomerInfo;
-}
-
-interface AuthorizeChargeResponse {
-    readonly id: ChargeId;
-}
-
-interface SmallTransfersApi {
-    readonly getAccessToken: (code: AuthorizationCode) => Promise<GetTokensResponseBody>;
-    readonly authorizeCharge: (accessToken: AccessToken, maxCostMicros: Micros) => Promise<ChargeId>;
-    readonly captureCharge: (accessToken: AccessToken, chargeId: ChargeId, amountMicros: Micros) => Promise<void>;
-}
+import type {
+    AccessToken,
+    AuthorizationCode,
+    AuthorizeChargeResponse,
+    ChargeId,
+    GetTokensResponseBody,
+    SmallTransfersApi,
+} from "@/lib/smalltransfersTypes";
+import { Micros } from "@/lib/smalltransfersTypes";
+import { ApiError } from "@/lib/types";
 
 export class SmallTransfersClient implements SmallTransfersApi {
     constructor(

@@ -21,4 +21,3 @@ export type Opaque<BaseType, OpaqueType> = BaseType & {
 
 export type Url = Opaque<string, "Url">;
 export type Email = Opaque<string, "Email">;
-export type Micros = Opaque<number, "Micros">;

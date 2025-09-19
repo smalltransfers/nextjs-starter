@@ -4,7 +4,8 @@ import StatusCode from "status-code-enum";
 
 import { IRON_SESSION_OPTIONS } from "@/lib/ironSession";
 import { SmallTransfersClient } from "@/lib/smalltransfers";
-import { ApiError, Micros } from "@/lib/types";
+import { Micros } from "@/lib/smalltransfersTypes";
+import { ApiError } from "@/lib/types";
 import { handleApiError } from "@/lib/utils";
 
 export async function POST(): Promise<Response> {
