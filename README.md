@@ -12,6 +12,7 @@ Create a merchant account at [Small Transfers](https://smalltransfers.com) to ob
 
 Set the environment variables. For running locally, `cp .env.example .env.local`, then edit `.env.local`.
 
+- `NEXT_PUBLIC_SMALL_TRANSFERS_BASE_URL`: The base URL for your Small Transfers API calls. Defaults to `https://test.smalltransfers.com`. If deploying live, set to `https://smalltransfers.com`.
 - `NEXT_PUBLIC_SMALL_TRANSFERS_PUBLISHABLE_KEY`: The publishable key for your Small Transfers account.
 - `SMALL_TRANSFERS_SECRET_KEY`: The secret key for your Small Transfers account.
 - `IRON_SESSION_PASSWORD`: The password to encrypt the session cookie. You can generate it with:
