@@ -1,10 +1,9 @@
 import "@/app/globals.css";
-import "react-toastify/dist/ReactToastify.css";
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { JSX, ReactNode } from "react";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "sonner";
 
 import BaseUrlProvider from "@/components/BaseUrlProvider";
 import { getBaseUrl } from "@/lib/basePath";
@@ -37,7 +36,7 @@ export default async function RootLayout(props: Props): Promise<JSX.Element> {
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <BaseUrlProvider baseUrl={baseUrl}>{children}</BaseUrlProvider>
-                <ToastContainer position="bottom-left" />
+                <Toaster richColors position="bottom-left" />
             </body>
         </html>
     );

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { JSX, useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 import { useBaseUrl } from "@/components/BaseUrlProvider";
 import { Button } from "@/components/ui/button";

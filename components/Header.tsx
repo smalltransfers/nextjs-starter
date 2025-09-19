@@ -2,7 +2,7 @@
 
 import { Loader2Icon, LogOut } from "lucide-react";
 import { JSX } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/lib/api";
