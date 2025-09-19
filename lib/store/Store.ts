@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-export interface Store {
+interface Store {
     currentUserEmail: undefined | null | string;
     setCurrentUserEmail: (currentUserEmail: null | string) => void;
 }

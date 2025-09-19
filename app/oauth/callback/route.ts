@@ -1,28 +1,16 @@
 import { getIronSession, SessionData } from "iron-session";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import StatusCode from "status-code-enum";
 
-import { SMALL_TRANSFERS_API_BASE_URL } from "@/lib/constants";
 import { IRON_SESSION_OPTIONS } from "@/lib/ironSession";
+import { SmallTransfersClient } from "@/lib/smalltransfers";
+import { ApiError } from "@/lib/types";
 import { getErrorString } from "@/lib/utils";
 
 // We ensure no caching via this config.
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-
-interface CustomerInfo {
-    readonly id: string;
-    readonly firstName: string;
-    readonly lastName: string;
-    readonly email: string;
-}
-
-interface GetTokensResponseBody {
-    readonly accessToken: string;
-    readonly tokenType: string;
-    readonly scope: string;
-    readonly customer: CustomerInfo;
-}
 
 // This is a route and not a page, because it needs to execute some simple logic and then redirect.
 // It cannot be implemented as a server component, because it needs to modify the session (cookies).
@@ -37,46 +25,16 @@ export async function GET(request: Request): Promise<Response> {
 
     try {
         if (error !== null) {
-            throw new Error(`Authorization failed: ${error}`);
+            throw new ApiError(`Authorization failed: ${error}`, StatusCode.ClientErrorUnauthorized);
         }
 
         const code = searchParams.get("code");
         if (code === null) {
-            throw new Error("Authorization code not found in URL parameters.");
+            throw new ApiError("Authorization code not found in URL parameters.", StatusCode.ClientErrorBadRequest);
         }
 
-        const publishableKey = process.env.NEXT_PUBLIC_SMALL_TRANSFERS_PUBLISHABLE_KEY;
-        if (publishableKey === undefined) {
-            throw new Error("Publishable key not specified in environment variables.");
-        }
-
-        const secretKey = process.env.SMALL_TRANSFERS_SECRET_KEY;
-        if (secretKey === undefined) {
-            throw new Error("Secret key not specified in environment variables.");
-        }
-
-        // Exchange the authorization code for an access token.
-        const url = `${SMALL_TRANSFERS_API_BASE_URL}/oauth/tokens`;
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify({
-                grantType: "authorization_code",
-                authorizationCode: code,
-                publishableKey,
-                secretKey,
-            }),
-        };
-        const response = await fetch(url, options);
-        if (!response.ok) {
-            throw new Error(
-                `Failed to exchange authorization code for access token: ${response.statusText} (${response.status})`,
-            );
-        }
-        const data = (await response.json()) as GetTokensResponseBody;
+        const smallTransfers = new SmallTransfersClient();
+        const data = await smallTransfers.getAccessToken(code);
 
         // Store the access token in the session.
         const session = await getIronSession<SessionData>(await cookies(), IRON_SESSION_OPTIONS);

@@ -1,7 +1,11 @@
 import { SessionOptions } from "iron-session";
 
-// TODO: Set the IRON_SESSION_PASSWORD environment variable.
-const IRON_SESSION_PASSWORD = process.env.IRON_SESSION_PASSWORD || "PLACEHOLDER_IRON_SESSION_PASSWORD";
+import { Email } from "@/lib/types";
+
+const IRON_SESSION_PASSWORD = process.env.IRON_SESSION_PASSWORD;
+if (IRON_SESSION_PASSWORD === undefined || IRON_SESSION_PASSWORD === "") {
+    throw new Error("IRON_SESSION_PASSWORD is not set.");
+}
 
 export const IRON_SESSION_OPTIONS: SessionOptions = {
     cookieName: "smalltransfers-nextjs-starter.session",
@@ -15,7 +19,7 @@ export const IRON_SESSION_OPTIONS: SessionOptions = {
 };
 
 interface UserSessionData {
-    readonly email: string;
+    readonly email: Email;
     readonly accessToken: string;
 }
 

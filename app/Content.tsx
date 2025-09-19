@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 
 import SignInButton from "@/components/SignInButton";
 import { Button } from "@/components/ui/button";
+import { getUser, makePaidRequest } from "@/lib/api";
 import { useCurrentUserEmail, useSetCurrentUserEmail } from "@/lib/store/hooks";
-import { getResponseErrorString } from "@/lib/utils";
 
 interface Props {
     readonly baseUrl: string;
@@ -20,10 +20,13 @@ export default function Content(props: Props): JSX.Element {
     const [isMakingPaidRequest, setIsMakingPaidRequest] = useState(false);
 
     useEffect(() => {
-        async function getCurrentUser() {
-            const response = await fetch("/api/users/me");
-            const userEmail = await response.json();
-            setCurrentUserEmail(userEmail);
+        async function getCurrentUser(): Promise<void> {
+            const result = await getUser();
+            if (result.ok) {
+                setCurrentUserEmail(result.value);
+            } else {
+                toast.error(result.error);
+            }
         }
 
         getCurrentUser();
@@ -41,17 +44,13 @@ export default function Content(props: Props): JSX.Element {
         );
     }
 
-    async function makePaidRequest(): Promise<void> {
+    async function handleMakePaidRequest(): Promise<void> {
         setIsMakingPaidRequest(true);
-        const response = await fetch("/api/paid-requests", {
-            method: "POST",
-        });
-        if (response.ok) {
-            const { capturedMicros } = await response.json();
-            toast.success(`Successfully charged ${capturedMicros / 1_000_000} USD.`);
+        const result = await makePaidRequest();
+        if (result.ok) {
+            toast.success(`Successfully charged ${result.value / 1_000_000} USD.`);
         } else {
-            const error = await getResponseErrorString(response);
-            toast.error(`Failed to make a paid request: ${error}`);
+            toast.error(result.error);
         }
         setIsMakingPaidRequest(false);
     }
@@ -71,7 +70,7 @@ export default function Content(props: Props): JSX.Element {
 
     return (
         <div className="flex w-full max-w-md flex-col items-center gap-6">
-            <Button onClick={makePaidRequest} disabled={isMakingPaidRequest}>
+            <Button onClick={handleMakePaidRequest} disabled={isMakingPaidRequest}>
                 {isMakingPaidRequest ? (
                     <>
                         <Loader2Icon className="animate-spin" />
