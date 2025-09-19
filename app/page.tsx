@@ -1,18 +1,19 @@
 import { JSX } from "react";
 
 import Content from "@/app/Content";
-import Footer from "@/app/Footer";
-import styles from "@/app/page.module.css";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { getBaseUrl } from "@/lib/basePath";
 
 export default async function Home(): Promise<JSX.Element> {
     const baseUrl = await getBaseUrl();
 
     return (
-        <div className={styles.page}>
-            <main className={styles.main}>
+        <div className="flex h-screen flex-col">
+            <Header />
+            <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center px-2">
                 <Content baseUrl={baseUrl} />
-            </main>
+            </div>
             <Footer />
         </div>
     );

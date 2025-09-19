@@ -1,9 +1,9 @@
-import "react-toastify/dist/ReactToastify.css";
 import "@/app/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { JSX, ReactNode } from "react";
+import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     description: "The NextJS Starter project for Small Transfers.",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 {children}
                 <ToastContainer position="bottom-left" />
             </body>
