@@ -2,7 +2,9 @@ This is a [Small Transfers](https://smalltransfers.com) Next.js starter project.
 
 It was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app), and uses [shadcn/ui](https://ui.shadcn.com/) for UI, [iron-session](https://github.com/vvo/iron-session) for session management, and [Zustand](https://github.com/pmndrs/zustand) for client state management.
 
-See a [live demo](https://nextjs-starter.smalltransfers.com/) of this repository. It uses test Small Transfers keys, so "paid requests" charge only test customers.
+There is a [live demo](https://nextjs-starter.smalltransfers.com/) of this repository. It uses test Small Transfers keys, so "paid requests" charge only test customers.
+
+See also the [Small Transfers AI Starter](https://github.com/smalltransfers/ai-starter).
 
 ## Getting Started
 
