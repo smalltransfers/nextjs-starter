@@ -6,7 +6,7 @@ import { JSX, ReactNode } from "react";
 import { Toaster } from "sonner";
 
 import BaseUrlProvider from "@/components/BaseUrlProvider";
-import { getBaseUrl } from "@/lib/basePath";
+import { getBaseUrl } from "@/lib/baseUrl";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",

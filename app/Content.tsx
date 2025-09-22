@@ -1,6 +1,6 @@
 "use client";
 
-import { Loader2Icon } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { JSX, useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -58,7 +58,7 @@ export default function Content(): JSX.Element {
     if (currentUserEmail === undefined) {
         return (
             <div className="flex items-center gap-2">
-                <Loader2Icon className="animate-spin" />
+                <Loader2 className="animate-spin" />
                 <p className="text-2xl">Loading...</p>
             </div>
         );
@@ -73,7 +73,7 @@ export default function Content(): JSX.Element {
             <Button onClick={handleMakePaidRequest} disabled={disabled}>
                 {isMakingPaidRequest ? (
                     <>
-                        <Loader2Icon className="animate-spin" />
+                        <Loader2 className="animate-spin" />
                         Making a paid request...
                     </>
                 ) : (

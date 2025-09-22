@@ -1,6 +1,6 @@
 "use client";
 
-import { Loader2Icon, LogOut } from "lucide-react";
+import { Loader2, LogOut } from "lucide-react";
 import { JSX } from "react";
 import { toast } from "sonner";
 
@@ -58,7 +58,7 @@ export default function Header(): JSX.Element | false {
                         size="icon"
                         className="text-muted size-8"
                     >
-                        {isSigningOut ? <Loader2Icon className="animate-spin" /> : <LogOut />}
+                        {isSigningOut ? <Loader2 className="animate-spin" /> : <LogOut />}
                     </Button>
                 </div>
             )}
