@@ -1,10 +1,12 @@
-This is a [Small Transfers](https://smalltransfers.com) Next.js starter project.
+This is a [Small Transfers](https://smalltransfers.com) Next.js starter project. (See also the [Small Transfers AI Starter](https://github.com/smalltransfers/ai-starter).)
 
 It was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app), and uses [shadcn/ui](https://ui.shadcn.com/) for UI, [iron-session](https://github.com/vvo/iron-session) for session management, and [Zustand](https://github.com/pmndrs/zustand) for client state management.
 
-There is a [live demo](https://nextjs-starter.smalltransfers.com/) of this repository. It uses test Small Transfers keys, so "paid requests" charge only test customers.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node.js = 22.x](https://img.shields.io/badge/Node.js-22.x-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Live demo](https://img.shields.io/badge/demo-live-00C851.svg)](https://nextjs-starter.smalltransfers.com/)
 
-See also the [Small Transfers AI Starter](https://github.com/smalltransfers/ai-starter).
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsmalltransfers%2Fnextjs-starter&env=NEXT_PUBLIC_SMALL_TRANSFERS_PUBLISHABLE_KEY,SMALL_TRANSFERS_SECRET_KEY,IRON_SESSION_PASSWORD&envDescription=Click%20%22Learn%20More%22%20for%20how%20to%20specify%20the%20above%20environment%20variables.&envLink=https%3A%2F%2Fgithub.com%2Fsmalltransfers%2Fnextjs-starter%2Fblob%2Fmain%2FREADME.md&project-name=my-small-transfers-project&repository-name=my-small-transfers-project)
 
 ## Getting Started
 
@@ -41,6 +43,6 @@ See the following [Small Transfers](https://smalltransfers.com) resources:
 - [Integration Guide](https://smalltransfers.com/merchant/docs/integration-guide)
 - [API Reference](https://smalltransfers.com/merchant/docs/api)
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy this app is to use [Vercel](https://vercel.com/new).
+Contributions are welcome! Feel free to submit a pull request.

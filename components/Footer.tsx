@@ -22,7 +22,7 @@ export default function Footer(): JSX.Element {
                 alt="GitHub logo"
             />
             <FooterLink
-                href="https://vercel.com/new"
+                href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsmalltransfers%2Fnextjs-starter&env=NEXT_PUBLIC_SMALL_TRANSFERS_PUBLISHABLE_KEY,SMALL_TRANSFERS_SECRET_KEY,IRON_SESSION_PASSWORD&envDescription=Click%20%22Learn%20More%22%20for%20how%20to%20specify%20the%20above%20environment%20variables.&envLink=https%3A%2F%2Fgithub.com%2Fsmalltransfers%2Fnextjs-starter%2Fblob%2Fmain%2FREADME.md&project-name=my-small-transfers-project&repository-name=my-small-transfers-project"
                 rel="noopener noreferrer nofollow"
                 caption="Deploy now"
                 src={vercelIcon}
